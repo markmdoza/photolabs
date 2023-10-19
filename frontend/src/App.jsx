@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import PhotoListItem from './components/PhotoListItem';
@@ -27,7 +26,6 @@ const App = () => {
   return (
     <div className="App">
       {photoList}
-      <PhotoFavButton/>
     </div>
   );
 };
