@@ -5,7 +5,6 @@ import PhotoListItem from './components/PhotoListItem';
 import PhotoFavButton from 'components/PhotoFavButton';
 import './App.scss';
 
-// Note: Rendering a single component to build components in isolation
 const App = () => {
   const photoList = [];
 
@@ -28,7 +27,7 @@ const App = () => {
   return (
     <div className="App">
       {photoList}
-      {PhotoFavButton}
+      <PhotoFavButton/>
     </div>
   );
 };
