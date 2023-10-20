@@ -7,23 +7,26 @@ const PhotoListItem = (props) => {
   return (
     <div className="photo-list__item">
       <div>
-        <PhotoFavButton/>
-        <img src={props.data.imageSource} className="photo-list__image"/>
+        <PhotoFavButton />
+        <img src={props.url} className="photo-list__image" />
       </div>
-      <div className="photo-list__user-info ">
+      <div className="photo-list__user-info">
         <div className="photo-list__user-details">
-          <img src={props.data.profile} alt="Profile Avatar" 
-          className="photo-list__user-profile" />
-        <div className="photo-list__user-details">
-        {props.data.username}
-          <div className="photo-list__user-location">
-          {props.data.location.city}, {props.data.location.country}
+          <img
+            src={props.user.profile}
+            alt="Profile Avatar"
+            className="photo-list__user-profile"
+          />
+          <div className="photo-list__user-details">
+            {props.user.username}
+            <div className="photo-list__user-location">
+              {props.location.city}, {props.location.country}
+            </div>
           </div>
         </div>
       </div>
-      </div>
     </div>
-  )
+  );
 };
 
 export default PhotoListItem;
