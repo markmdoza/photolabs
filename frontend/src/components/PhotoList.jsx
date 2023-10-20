@@ -59,7 +59,7 @@ const sampleDataForPhotoList = [
 
 const PhotoList = () => {
   return (
-    <ul className="photo-list">
+    <div className="photo-list">
       {sampleDataForPhotoList.map((photo) => (
         <PhotoListItem
           key={photo.id}
@@ -68,7 +68,7 @@ const PhotoList = () => {
           location={photo.location}
         />
       ))}
-    </ul>
+    </div>
   );
 };
 
