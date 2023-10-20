@@ -1,7 +1,7 @@
-import React from 'react';
-
-import PhotoList from 'components/PhotoList';
-import './App.scss';
+import React from "react";
+import TopicListItem from "components/TopicListItem";
+import PhotoList from "components/PhotoList";
+import "./App.scss";
 
 const App = () => {
   // const photoList = [];
@@ -12,6 +12,7 @@ const App = () => {
   // }
   return (
     <div className="App">
+      <TopicListItem />
       <PhotoList />
     </div>
   );
