@@ -63,9 +63,11 @@ const PhotoList = (props) => {
       {props.photos.map((photo) => (
         <PhotoListItem
           key={photo.id}
+          id={photo.id}
           url={photo.urls.full}
           user={photo.user}
           location={photo.location}
+          toggleFavoritePhoto={props.toggleFavoritePhoto}
         />
       ))}
     </div>
