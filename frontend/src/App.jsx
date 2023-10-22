@@ -18,7 +18,7 @@ const App = () => {
         topics={topics}
         toggleSidePeek={toggleSidePeek}
       />
-      {sidePeek && <PhotoDetailsModal />}
+      {sidePeek && <PhotoDetailsModal toggleSidePeek={toggleSidePeek} />}
     </div>
   );
 };
