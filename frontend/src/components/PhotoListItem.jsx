@@ -12,7 +12,11 @@ const PhotoListItem = (props) => {
           photoId={props.photoId}
           favourites={props.favourites}
         />
-        <img src={props.url} className="photo-list__image" />
+        <img
+          src={props.url}
+          className="photo-list__image"
+          onClick={() => props.toggleSidePeek()}
+        />
       </div>
       <div className="photo-list__user-info">
         <div className="photo-list__user-details">
