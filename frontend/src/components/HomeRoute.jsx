@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import "../styles/HomeRoute.scss";
 
-const HomeRoute = ({ topics, photos, toggleSidePeek }) => {
+const HomeRoute = ({ topics, photos, toggleopenModal }) => {
   const [favPhoto, setFavPhoto] = useState([]);
   const toggleFavoritePhoto = (photos) => {
     const isFavorite = favPhoto.includes(photos);
@@ -23,7 +23,7 @@ const HomeRoute = ({ topics, photos, toggleSidePeek }) => {
         photos={photos}
         toggleFavoritePhoto={toggleFavoritePhoto}
         favourites={favPhoto}
-        toggleSidePeek={toggleSidePeek}
+        toggleopenModal={toggleopenModal}
       />
     </div>
   );

@@ -2,19 +2,57 @@ import React from "react";
 
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
+import PhotoList from "components/PhotoList";
 
-const PhotoDetailsModal = ({ toggleSidePeek }) => {
+const PhotoDetailsModal = ({
+  toggleopenModal,
+  photoProps,
+  similarPhotos,
+  toggleFavoritePhoto,
+}) => {
+  const { photoId, username, name, profile, url, url2, city, country } =
+    photoProps;
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button">
-        <img
-          src={closeSymbol}
-          alt="close symbol"
+      <div className="photo-details-modal__top-bar">
+        <button
           onClick={() => {
-            toggleSidePeek();
+            toggleFavoritePhoto();
           }}
+        ></button>
+        <button className="photo-details-modal__close-button">
+          <img
+            src={url2}
+            alt="A photo"
+            className="photo-details-modal__image"
+          />
+          <img
+            src={closeSymbol}
+            alt="close symbol"
+            onClick={() => {
+              toggleopenModal({ photoProps });
+            }}
+          />
+        </button>
+      </div>
+      <div className="photo-details-modal__header">
+        <img
+          src={profile}
+          alt="User profile"
+          className="photo-details-modal__photographer-profile"
         />
-      </button>
+        <div className="photo-details-modal__photographer-details">
+          <div className="photo-details-modal__photographer-info ">
+            {name}
+            <div className="photo-details-modal__photographer-location ">
+              {city}, {country}
+              <div className="photo-details-modal__images">
+                <PhotoList photos={similarPhotos} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

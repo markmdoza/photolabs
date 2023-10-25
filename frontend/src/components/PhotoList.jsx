@@ -11,10 +11,15 @@ const PhotoList = (props) => {
           key={photo.id}
           photoId={photo.id}
           url={photo.urls.full}
+          url2={photo.urls.regular}
           user={photo.user}
-          location={photo.location}
+          username={photo.user.username}
+          name={photo.user.name}
+          profile={photo.user.profile}
+          city={photo.location.city}
+          country={photo.location.country}
           toggleFavoritePhoto={props.toggleFavoritePhoto}
-          toggleSidePeek={props.toggleSidePeek}
+          toggleopenModal={props.toggleopenModal}
           favourites={props.favourites}
         />
       ))}
