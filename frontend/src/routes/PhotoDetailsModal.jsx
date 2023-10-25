@@ -3,23 +3,25 @@ import React from "react";
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
+import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = ({
   toggleopenModal,
   photoProps,
   similarPhotos,
   toggleFavoritePhoto,
+  favPhoto,
 }) => {
   const { photoId, username, name, profile, url, url2, city, country } =
     photoProps;
   return (
     <div className="photo-details-modal">
       <div className="photo-details-modal__top-bar">
-        <button
+        {/* <button
           onClick={() => {
             toggleFavoritePhoto();
           }}
-        ></button>
+        ></button> */}
         <button className="photo-details-modal__close-button">
           <img
             src={url2}
@@ -36,6 +38,11 @@ const PhotoDetailsModal = ({
         </button>
       </div>
       <div className="photo-details-modal__header">
+        <PhotoFavButton
+          toggleFavoritePhoto={toggleFavoritePhoto}
+          photoId={photoId}
+          favourites={favPhoto}
+        />
         <img
           src={profile}
           alt="User profile"
@@ -47,7 +54,11 @@ const PhotoDetailsModal = ({
             <div className="photo-details-modal__photographer-location ">
               {city}, {country}
               <div className="photo-details-modal__images">
-                <PhotoList photos={similarPhotos} />
+                <PhotoList
+                  photos={similarPhotos}
+                  toggleFavoritePhoto={toggleFavoritePhoto}
+                  favourites={favPhoto}
+                />
               </div>
             </div>
           </div>

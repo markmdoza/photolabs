@@ -11,7 +11,7 @@ const App = () => {
   const [favPhoto, setFavPhoto] = useState([]);
   const toggleFavoritePhoto = (photos) => {
     const isFavorite = favPhoto.includes(photos);
-
+    console.log("toggleFavoritePhoto", photos);
     if (isFavorite) {
       setFavPhoto(favPhoto.filter((id) => id !== photos));
     } else {
@@ -37,6 +37,9 @@ const App = () => {
         photos={photos}
         topics={topics}
         toggleopenModal={toggleopenModal}
+        toggleFavoritePhoto={toggleFavoritePhoto}
+        favPhoto={favPhoto}
+        setFavPhoto={setFavPhoto}
       />
       {openModal && (
         <PhotoDetailsModal
@@ -44,6 +47,7 @@ const App = () => {
           photoProps={photoProps}
           similarPhotos={similarPhotosArray || []}
           toggleFavoritePhoto={toggleFavoritePhoto}
+          favPhoto={favPhoto}
         />
       )}
     </div>
