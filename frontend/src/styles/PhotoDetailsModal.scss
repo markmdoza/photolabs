@@ -1,6 +1,6 @@
 .photo-details-modal {
   background-color: white;
-  box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
+  box-shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 55%;
   left: 50%;
@@ -35,6 +35,7 @@
 }
 
 .photo-details-modal__top-bar {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

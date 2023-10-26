@@ -16,43 +16,41 @@ const PhotoDetailsModal = ({
     photoProps;
   return (
     <div className="photo-details-modal">
-      <div className="photo-details-modal__top-bar">
-        {/* <button
-          onClick={() => {
-            toggleFavoritePhoto();
-          }}
-        ></button> */}
-        <button className="photo-details-modal__close-button">
-          <img
-            src={url2}
-            alt="A photo"
-            className="photo-details-modal__image"
-          />
-          <img
-            src={closeSymbol}
-            alt="close symbol"
-            onClick={() => {
-              toggleopenModal({ photoProps });
-            }}
-          />
-        </button>
-      </div>
-      <div className="photo-details-modal__header">
-        <PhotoFavButton
-          toggleFavoritePhoto={toggleFavoritePhoto}
-          photoId={photoId}
-          favourites={favPhoto}
-        />
+      <div className="photo-details-modal__close-button">
         <img
-          src={profile}
-          alt="User profile"
-          className="photo-details-modal__photographer-profile"
+          src={closeSymbol}
+          alt="close symbol"
+          onClick={() => {
+            toggleopenModal({ photoProps });
+          }}
         />
-        <div className="photo-details-modal__photographer-details">
-          <div className="photo-details-modal__photographer-info ">
-            {name}
-            <div className="photo-details-modal__photographer-location ">
-              {city}, {country}
+      </div>
+      <div>
+        <div className="photo-list__fav-icon">
+          <PhotoFavButton
+            toggleFavoritePhoto={toggleFavoritePhoto}
+            photoId={photoId}
+            favourites={favPhoto}
+          />
+        </div>
+        <img src={url2} alt="A photo" className="photo-details-modal__image" />
+      </div>
+      <>
+        <div className="photo-details-modal__header">
+          <div className="photo-details-modal__photographer-details">
+            <img
+              src={profile}
+              alt="User profile"
+              className="photo-details-modal__photographer-profile"
+            />
+            <div className="photo-details-modal__photographer-info ">
+              {name}
+              <div className="photo-details-modal__photographer-location ">
+                {city}, {country}
+              </div>
+              <span>
+                <h2>Similar Photos</h2>
+              </span>
               <div className="photo-details-modal__images">
                 <PhotoList
                   photos={similarPhotos}
@@ -63,7 +61,7 @@ const PhotoDetailsModal = ({
             </div>
           </div>
         </div>
-      </div>
+      </>
     </div>
   );
 };

@@ -21,8 +21,8 @@ const FavIcon = ({ displayAlert, selected }) => {
         <circle
           cx="21"
           cy="4"
-          r="2.75"
-          fill="#FFFF00"
+          r="3.8"
+          fill="lightgreen"
           stroke="#C80000"
           strokeWidth="0.5"
         />
