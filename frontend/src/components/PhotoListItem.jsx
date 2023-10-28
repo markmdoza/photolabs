@@ -4,12 +4,12 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const { toggleopenModal } = props;
+  const { setPhotoSelected } = props;
   return (
     <div className="photo-list__item">
       <div>
         <PhotoFavButton
-          toggleFavoritePhoto={props.toggleFavoritePhoto}
+          updateToFavPhotoIds={props.updateToFavPhotoIds}
           photoId={props.photoId}
           favourites={props.favourites}
         />
@@ -17,16 +17,7 @@ const PhotoListItem = (props) => {
           src={props.url}
           className="photo-list__image"
           onClick={() => {
-            toggleopenModal({
-              photoId: props.photoId,
-              username: props.username,
-              name: props.name,
-              profile: props.profile,
-              url: props.url,
-              url2: props.url2,
-              city: props.city,
-              country: props.country,
-            });
+            setPhotoSelected(props);
           }}
         />
       </div>

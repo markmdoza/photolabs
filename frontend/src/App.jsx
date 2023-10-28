@@ -4,50 +4,62 @@ import topics from "./mocks/topics";
 import HomeRoute from "components/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import "./App.scss";
+import useApplicationData from "hooks/useApplicationData";
 
 const App = () => {
-  const [openModal, setopenModal] = useState(false);
-  const [photoProps, setPhotoProps] = useState(null);
-  const [favPhoto, setFavPhoto] = useState([]);
-  const toggleFavoritePhoto = (photos) => {
-    const isFavorite = favPhoto.includes(photos);
-    console.log("toggleFavoritePhoto", photos);
-    if (isFavorite) {
-      setFavPhoto(favPhoto.filter((id) => id !== photos));
-    } else {
-      setFavPhoto([...favPhoto, photos]);
-    }
-  };
+  const {
+    state,
+    similarPhotosArray,
+    updateToFavPhotoIds,
+    setPhotoSelected,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
+  // destructure openModal + others from state
+  const { openModal, favPhoto, photo } = state;
 
-  const toggleopenModal = (props) => {
-    setPhotoProps(props);
-    setopenModal(!openModal);
-  };
+  // const [openModal, setopenModal] = useState(false);
+  // const [photoProps, setPhotoProps] = useState(null);
+  // const [favPhoto, setFavPhoto] = useState([]);
 
-  const selectedPhoto =
-    photoProps && photos.find((photo) => photo.id === photoProps.photoId);
+  // const toggleFavoritePhoto = (photos) => {
+  //   const isFavorite = favPhoto.includes(photos);
+  //   console.log("toggleFavoritePhoto", photos);
+  //   if (isFavorite) {
+  //     setFavPhoto(favPhoto.filter((id) => id !== photos));
+  //   } else {
+  //     setFavPhoto([...favPhoto, photos]);
+  //   }
+  // };
 
-  const similarPhotos = selectedPhoto && selectedPhoto.similar_photos;
+  // const setPhotoSelected = (props) => {
+  //   setPhotoProps(props);
+  //   setopenModal(!openModal);
+  // };
 
-  const similarPhotosArray = similarPhotos && Object.values(similarPhotos);
+  // const selectedPhoto =
+  //   photoProps && photos.find((photo) => photo.id === photoProps.photoId);
+
+  // const similarPhotos = selectedPhoto && selectedPhoto.similar_photos;
+
+  // const similarPhotosArray = similarPhotos && Object.values(similarPhotos);
 
   return (
     <div className="App">
       <HomeRoute
         photos={photos}
         topics={topics}
-        toggleopenModal={toggleopenModal}
-        toggleFavoritePhoto={toggleFavoritePhoto}
+        setPhotoSelected={setPhotoSelected}
+        updateToFavPhotoIds={updateToFavPhotoIds}
         favPhoto={favPhoto}
-        setFavPhoto={setFavPhoto}
       />
       {openModal && (
         <PhotoDetailsModal
-          toggleopenModal={() => toggleopenModal(photoProps)}
-          photoProps={photoProps}
+          setPhotoSelected={() => setPhotoSelected()}
+          photo={photo}
           similarPhotos={similarPhotosArray || []}
-          toggleFavoritePhoto={toggleFavoritePhoto}
+          updateToFavPhotoIds={updateToFavPhotoIds}
           favPhoto={favPhoto}
+          onClosePhotoDetailsModal={onClosePhotoDetailsModal}
         />
       )}
     </div>

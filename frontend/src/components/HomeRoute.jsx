@@ -7,19 +7,18 @@ import "../styles/HomeRoute.scss";
 const HomeRoute = ({
   topics,
   photos,
-  toggleopenModal,
-  toggleFavoritePhoto,
+  setPhotoSelected,
+  updateToFavPhotoIds,
   favPhoto,
-  setFavPhoto,
 }) => {
   return (
     <div className="home-route">
       <TopNavigation topics={topics} favPhotoExists={favPhoto.length > 0} />
       <PhotoList
         photos={photos}
-        toggleFavoritePhoto={toggleFavoritePhoto}
+        updateToFavPhotoIds={updateToFavPhotoIds}
         favourites={favPhoto}
-        toggleopenModal={toggleopenModal}
+        setPhotoSelected={setPhotoSelected}
       />
     </div>
   );

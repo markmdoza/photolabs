@@ -6,29 +6,27 @@ import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = ({
-  toggleopenModal,
-  photoProps,
+  setPhotoSelected,
+  photo,
   similarPhotos,
-  toggleFavoritePhoto,
   favPhoto,
+  onClosePhotoDetailsModal,
+  updateToFavPhotoIds,
 }) => {
-  const { photoId, username, name, profile, url, url2, city, country } =
-    photoProps;
+  const { photoId, username, name, profile, url, url2, city, country } = photo;
   return (
     <div className="photo-details-modal">
       <div className="photo-details-modal__close-button">
         <img
           src={closeSymbol}
           alt="close symbol"
-          onClick={() => {
-            toggleopenModal({ photoProps });
-          }}
+          onClick={onClosePhotoDetailsModal}
         />
       </div>
       <div>
         <div className="photo-list__fav-icon">
           <PhotoFavButton
-            toggleFavoritePhoto={toggleFavoritePhoto}
+            updateToFavPhotoIds={updateToFavPhotoIds}
             photoId={photoId}
             favourites={favPhoto}
           />
@@ -54,7 +52,7 @@ const PhotoDetailsModal = ({
               <div className="photo-details-modal__images">
                 <PhotoList
                   photos={similarPhotos}
-                  toggleFavoritePhoto={toggleFavoritePhoto}
+                  updateToFavPhotoIds={updateToFavPhotoIds}
                   favourites={favPhoto}
                 />
               </div>

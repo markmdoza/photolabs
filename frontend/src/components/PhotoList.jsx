@@ -18,8 +18,8 @@ const PhotoList = (props) => {
           profile={photo.user.profile}
           city={photo.location.city}
           country={photo.location.country}
-          toggleFavoritePhoto={props.toggleFavoritePhoto}
-          toggleopenModal={props.toggleopenModal}
+          updateToFavPhotoIds={props.updateToFavPhotoIds}
+          setPhotoSelected={props.setPhotoSelected}
           favourites={props.favourites}
         />
       ))}
