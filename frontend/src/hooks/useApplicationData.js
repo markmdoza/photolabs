@@ -1,35 +1,71 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 import photos from "mocks/photos";
 
 // object will contain the entire state of the application.
+const initialState = {
+  openModal: false,
+  favPhoto: [],
+  photo: null,
+};
+
+export const ACTIONS = {
+  FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
+  FAV_PHOTO_REMOVED: "FAV_PHOTO_REMOVED",
+  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_TOPIC_DATA: "SET_TOPIC_DATA",
+  SELECT_PHOTO: "SELECT_PHOTO",
+  DESELECT_PHOTO: "DESELECT_PHOTO",
+  DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
+};
+
 function useApplicationData() {
-  const [state, setState] = useState({
-    openModal: false,
-    favPhoto: [],
-    photo: null,
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case ACTIONS.FAV_PHOTO_ADDED:
+        return {
+          ...state,
+          favPhoto: [...state.favPhoto, action.payload.id],
+        };
+      case ACTIONS.FAV_PHOTO_REMOVED:
+        return {
+          ...state,
+          favPhoto: state.favPhoto.filter((id) => id !== action.payload.id),
+        };
+      case ACTIONS.SELECT_PHOTO:
+        return {
+          ...state,
+          photo: action.payload.photo,
+          openModal: !state.openModal,
+        };
+      case ACTIONS.DESELECT_PHOTO:
+        return {
+          ...state,
+          photo: null,
+          openModal: false,
+        };
+      default:
+        throw new Error(
+          `Tried to reduce with unsupported action type: ${action.type}`
+        );
+    }
+  }
 
   // The updateToFavPhotoIds action can be used to set the favourite photos.
   const updateToFavPhotoIds = (photos) => {
     const isFavorite = state.favPhoto.includes(photos);
     console.log("toggleFavoritePhoto", photos);
     if (isFavorite) {
-      setState((prev) => ({
-        ...prev,
-        favPhoto: prev.favPhoto.filter((id) => id !== photos),
-      }));
+      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { id: photos } });
     } else {
-      setState((prev) => ({
-        ...prev,
-        // Accessing state values.
-        favPhoto: [...prev.favPhoto, photos],
-      }));
+      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { id: photos } });
     }
   };
 
   // The setPhotoSelected action can be used when the user selects a photo.
   const setPhotoSelected = (photo) => {
-    setState((prev) => ({ ...prev, photo, openModal: !prev.openModal }));
+    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo } });
   };
 
   const selectedPhoto =
@@ -41,7 +77,7 @@ function useApplicationData() {
 
   // The onClosePhotoDetailsModal action can be used to close the modal.
   const onClosePhotoDetailsModal = () => {
-    setState((prev) => ({ ...prev, photo: null, openModal: !prev.openModal }));
+    dispatch({ type: ACTIONS.DESELECT_PHOTO });
   };
 
   return {
@@ -52,4 +88,5 @@ function useApplicationData() {
     onClosePhotoDetailsModal,
   };
 }
+
 export default useApplicationData;
