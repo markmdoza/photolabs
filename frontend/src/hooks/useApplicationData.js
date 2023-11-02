@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import photos from "mocks/photos";
 
 // object will contain the entire state of the application.
