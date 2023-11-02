@@ -1,11 +1,12 @@
 import { useReducer, useEffect } from "react";
-import photos from "mocks/photos";
 
 // object will contain the entire state of the application.
 const initialState = {
   openModal: false,
   favPhoto: [],
   photo: null,
+  photoData: [],
+  topicData: [],
 };
 
 export const ACTIONS = {
