@@ -27,8 +27,9 @@ function useApplicationData() {
     axios
       .get("/api/photos")
       .then((res) => {
-        console.log("Response:", res.data);
+        return res.data;
       })
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
       .catch((error) => {
         console.error("There was an error making the API request:", error);
       });
@@ -58,6 +59,11 @@ function useApplicationData() {
           photo: null,
           openModal: false,
         };
+      case ACTIONS.SET_PHOTO_DATA:
+        return {
+          ...state,
+          photoData: action.payload,
+        };
       default:
         throw new Error(
           `Tried to reduce with unsupported action type: ${action.type}`
@@ -82,7 +88,8 @@ function useApplicationData() {
   };
 
   const selectedPhoto =
-    state.photo && photos.find((photo) => photo.id === state.photo.photoId);
+    initialState.photo &&
+    photos.find((photo) => photo.id === initialState.photo.photoId);
 
   const similarPhotos = selectedPhoto && selectedPhoto.similar_photos;
 
