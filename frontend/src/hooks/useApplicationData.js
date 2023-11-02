@@ -35,6 +35,18 @@ function useApplicationData() {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("/api/topics")
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+      .catch((error) => {
+        console.error("There was an error making the API request:", error);
+      });
+  }, []);
+
   function reducer(state, action) {
     switch (action.type) {
       case ACTIONS.FAV_PHOTO_ADDED:
@@ -64,6 +76,11 @@ function useApplicationData() {
           ...state,
           photoData: action.payload,
         };
+      case ACTIONS.SET_TOPIC_DATA:
+        return {
+          ...state,
+          topicData: action.payload,
+        };
       default:
         throw new Error(
           `Tried to reduce with unsupported action type: ${action.type}`
@@ -73,7 +90,7 @@ function useApplicationData() {
 
   // The updateToFavPhotoIds action can be used to set the favourite photos.
   const updateToFavPhotoIds = (photos) => {
-    const isFavorite = state.favPhoto.includes(photos);
+    const isFavorite = initialState.favPhoto.includes(photos);
     console.log("toggleFavoritePhoto", photos);
     if (isFavorite) {
       dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { id: photos } });

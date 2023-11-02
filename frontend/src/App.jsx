@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import photos from "./mocks/photos";
-import topics from "./mocks/topics";
 import HomeRoute from "components/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import "./App.scss";
@@ -15,13 +13,13 @@ const App = () => {
     onClosePhotoDetailsModal,
   } = useApplicationData();
   // destructure openModal + others from state
-  const { openModal, favPhoto, photo } = state;
+  const { openModal, favPhoto, photo, photoData, topicData } = state;
 
   return (
     <div className="App">
       <HomeRoute
-        photos={photos}
-        topics={topics}
+        photos={photoData}
+        topics={topicData}
         setPhotoSelected={setPhotoSelected}
         updateToFavPhotoIds={updateToFavPhotoIds}
         favPhoto={favPhoto}
