@@ -1,4 +1,5 @@
 import { useReducer, useEffect } from "react";
+import axios from "axios";
 
 // object will contain the entire state of the application.
 const initialState = {
@@ -21,6 +22,17 @@ export const ACTIONS = {
 
 function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    axios
+      .get("/api/photos")
+      .then((res) => {
+        console.log("Response:", res.data);
+      })
+      .catch((error) => {
+        console.error("There was an error making the API request:", error);
+      });
+  }, []);
 
   function reducer(state, action) {
     switch (action.type) {
