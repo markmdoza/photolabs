@@ -18,6 +18,7 @@ export const ACTIONS = {
   SELECT_PHOTO: "SELECT_PHOTO",
   DESELECT_PHOTO: "DESELECT_PHOTO",
   DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
+  GET_PHOTOS_BY_TOPICS: "http://localhost:8001/api/topics/photos/:topic_id,",
 };
 
 function useApplicationData() {
@@ -117,12 +118,24 @@ function useApplicationData() {
     dispatch({ type: ACTIONS.DESELECT_PHOTO });
   };
 
+  const handleClick = (id) => {
+    axios
+      .get(`http://localhost:8001/api/topics/photos/${id}`)
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) =>
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
+      );
+  };
+
   return {
     state,
     similarPhotosArray,
     updateToFavPhotoIds,
     setPhotoSelected,
     onClosePhotoDetailsModal,
+    handleClick,
   };
 }
 

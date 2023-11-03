@@ -11,6 +11,7 @@ const App = () => {
     updateToFavPhotoIds,
     setPhotoSelected,
     onClosePhotoDetailsModal,
+    handleClick,
   } = useApplicationData();
   // destructure openModal + others from state
   const { openModal, favPhoto, photo, photoData, topicData } = state;
@@ -23,6 +24,7 @@ const App = () => {
         setPhotoSelected={setPhotoSelected}
         updateToFavPhotoIds={updateToFavPhotoIds}
         favPhoto={favPhoto}
+        handleClick={handleClick}
       />
       {openModal && (
         <PhotoDetailsModal

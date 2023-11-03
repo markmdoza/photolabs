@@ -13,6 +13,7 @@ const PhotoDetailsModal = ({
   updateToFavPhotoIds,
 }) => {
   const { photoId, name, profile, url2, city, country } = photo;
+  console.log(similarPhotos);
   return (
     <div className="photo-details-modal">
       <img

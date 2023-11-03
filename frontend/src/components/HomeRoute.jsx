@@ -10,10 +10,15 @@ const HomeRoute = ({
   setPhotoSelected,
   updateToFavPhotoIds,
   favPhoto,
+  handleClick,
 }) => {
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} favPhotoExists={favPhoto.length > 0} />
+      <TopNavigation
+        topics={topics}
+        favPhotoExists={favPhoto.length > 0}
+        handleClick={handleClick}
+      />
       <PhotoList
         photos={photos}
         updateToFavPhotoIds={updateToFavPhotoIds}
