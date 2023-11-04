@@ -1,5 +1,4 @@
 import React from "react";
-
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
@@ -13,7 +12,6 @@ const PhotoDetailsModal = ({
   updateToFavPhotoIds,
 }) => {
   const { photoId, name, profile, url2, city, country } = photo;
-  console.log(similarPhotos);
   return (
     <div className="photo-details-modal">
       <img

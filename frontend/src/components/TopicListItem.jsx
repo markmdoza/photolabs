@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/TopicListItem.scss";
-import axios from "axios";
 
 const TopicListItem = ({ label, handleClick, id }) => {
   return (

@@ -13,7 +13,6 @@ const App = () => {
     onClosePhotoDetailsModal,
     handleClick,
   } = useApplicationData();
-  // destructure openModal + others from state
   const { openModal, favPhoto, photo, photoData, topicData } = state;
 
   return (

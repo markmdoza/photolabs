@@ -18,7 +18,6 @@ export const ACTIONS = {
   SELECT_PHOTO: "SELECT_PHOTO",
   DESELECT_PHOTO: "DESELECT_PHOTO",
   DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
-  GET_PHOTOS_BY_TOPICS: "http://localhost:8001/api/topics/photos/:topic_id,",
 };
 
 function useApplicationData() {
@@ -91,8 +90,7 @@ function useApplicationData() {
 
   // The updateToFavPhotoIds action can be used to set the favourite photos.
   const updateToFavPhotoIds = (photos) => {
-    const isFavorite = initialState.favPhoto.includes(photos);
-    console.log("toggleFavoritePhoto", photos);
+    const isFavorite = state.favPhoto.includes(photos);
     if (isFavorite) {
       dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { id: photos } });
     } else {
@@ -106,9 +104,8 @@ function useApplicationData() {
   };
 
   const selectedPhoto =
-    initialState.photo &&
-    photos.find((photo) => photo.id === initialState.photo.photoId);
-
+    state.photoData &&
+    state.photoData.find((photo) => photo.id === state.photo?.photoId);
   const similarPhotos = selectedPhoto && selectedPhoto.similar_photos;
 
   const similarPhotosArray = similarPhotos && Object.values(similarPhotos);

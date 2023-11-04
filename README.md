@@ -1,7 +1,14 @@
-# react-photolabs
-The PhotoLabs project for the Web Development React course programming.
-
 # Photolabs
+
+A single page full stack React web application where users can view, sort and, like photos.
+
+## Screenshots
+
+![a screenshot of the photolabs homepage](/frontend/public/photolabs-homepage.png)
+
+![a screenshot of the photolabs modal](/frontend//public/photolabs-modal.png)
+
+![another screenshot of the photolabs modal with photos liked](frontend/public/photolabs-modal2.png)
 
 ## Setup
 
@@ -22,3 +29,23 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+
+## Frontend Dependencies
+
+- React
+- React Dom
+- React Scripts
+- Sass
+- SQL
+
+---
+
+## Backend Dependencies
+
+- Body Parser
+- Cors
+- Dotenv
+- Express
+- Helmet
+- PG
+- Socket-io
