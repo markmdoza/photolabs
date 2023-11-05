@@ -79,6 +79,15 @@
   margin-left: 8px;
 }
 
-// .div__test {
-//   max-height: 450px;
-// }
+#dark .photo-details-modal {
+  background-color: grey;
+}
+
+#dark .photo-details-modal__close-button {
+  color: white;
+  background-color: grey;
+}
+
+#dark .photo-details-modal__photographer-location {
+  color: white;
+}

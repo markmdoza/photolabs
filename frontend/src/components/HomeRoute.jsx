@@ -11,6 +11,8 @@ const HomeRoute = ({
   updateToFavPhotoIds,
   favPhoto,
   handleClick,
+  toggleTheme,
+  theme,
 }) => {
   return (
     <div className="home-route">
@@ -18,6 +20,8 @@ const HomeRoute = ({
         topics={topics}
         favPhotoExists={favPhoto.length > 0}
         handleClick={handleClick}
+        toggleTheme={toggleTheme}
+        theme={theme}
       />
       <PhotoList
         photos={photos}

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import HomeRoute from "components/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import "./App.scss";
 import useApplicationData from "hooks/useApplicationData";
+
+export const ThemeContext = createContext(null);
 
 const App = () => {
   const {
@@ -15,26 +17,35 @@ const App = () => {
   } = useApplicationData();
   const { openModal, favPhoto, photo, photoData, topicData } = state;
 
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
   return (
-    <div className="App">
-      <HomeRoute
-        photos={photoData}
-        topics={topicData}
-        setPhotoSelected={setPhotoSelected}
-        updateToFavPhotoIds={updateToFavPhotoIds}
-        favPhoto={favPhoto}
-        handleClick={handleClick}
-      />
-      {openModal && (
-        <PhotoDetailsModal
-          photo={photo}
-          similarPhotos={similarPhotosArray || []}
+    <ThemeContext.Provider value={(theme, toggleTheme)}>
+      <div className="App" id={theme}>
+        <HomeRoute
+          photos={photoData}
+          topics={topicData}
+          setPhotoSelected={setPhotoSelected}
           updateToFavPhotoIds={updateToFavPhotoIds}
           favPhoto={favPhoto}
-          onClosePhotoDetailsModal={onClosePhotoDetailsModal}
+          handleClick={handleClick}
+          toggleTheme={toggleTheme}
+          theme={theme}
         />
-      )}
-    </div>
+        {openModal && (
+          <PhotoDetailsModal
+            photo={photo}
+            similarPhotos={similarPhotosArray || []}
+            updateToFavPhotoIds={updateToFavPhotoIds}
+            favPhoto={favPhoto}
+            onClosePhotoDetailsModal={onClosePhotoDetailsModal}
+          />
+        )}
+      </div>
+    </ThemeContext.Provider>
   );
 };
 
