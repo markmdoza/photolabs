@@ -1,6 +1,6 @@
 # Photolabs
 
-A single page full stack React web application where users can view, sort and, like photos.
+A single page full stack React web application where users can view, sort, and like photos.
 
 ## Screenshots
 
